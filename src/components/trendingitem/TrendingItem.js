@@ -11,14 +11,14 @@ const TrendingItem = () => {
       })
       .then((data) => {
         setMovies(data.results);
+        console.log(movies);
       });
-    console.log(movies);
-  });
+  }, []);
 
   return (
     <>
-      {movies.map(({ id, original_title }) => (
-        <li key={id}>{original_title}</li>
+      {movies.map(({ id, title, name }) => (
+        <li key={id}>{title ? title : name}</li>
       ))}
     </>
   );
