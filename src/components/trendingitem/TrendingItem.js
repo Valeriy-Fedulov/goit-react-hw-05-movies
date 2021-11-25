@@ -13,7 +13,7 @@ const TrendingItem = () => {
         setMovies(data.results);
       });
     console.log(movies);
-  }, []);
+  });
 
   return (
     <>
