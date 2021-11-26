@@ -13,7 +13,7 @@ function MovieDetailsPage() {
       })
       .then((data) => {
         setMovie(data.results);
-        console.log(movie);
+        console.log(data.results);
       });
   }, []);
 

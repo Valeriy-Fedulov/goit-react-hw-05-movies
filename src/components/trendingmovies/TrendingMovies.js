@@ -4,7 +4,7 @@ import { FetchMovies } from "../../services/api/api";
 
 const TrendingMovies = () => {
   const [movies, setMovies] = useState([]);
-
+  console.log(movies);
   useEffect(() => {
     FetchMovies()
       .then((response) => {
@@ -12,7 +12,6 @@ const TrendingMovies = () => {
       })
       .then((data) => {
         setMovies(data.results);
-        console.log(movies);
       });
   }, []);
 
