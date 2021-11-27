@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FetchMovies } from "../../services/api/api";
 
 const TrendingMovies = () => {
+  const url = useLocation();
+  console.log(url);
   const [movies, setMovies] = useState([]);
-  console.log(movies);
+
   useEffect(() => {
     FetchMovies()
       .then((response) => {

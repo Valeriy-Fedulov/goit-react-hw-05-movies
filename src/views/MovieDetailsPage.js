@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { FetchMovies } from "../../services/api/api";
+import { FetchMovies } from "../services/api/api";
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState([]);
