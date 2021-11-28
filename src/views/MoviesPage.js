@@ -48,7 +48,7 @@ function MoviesPage() {
       <ul>
         {movies.map(({ id, title }) => (
           <li key={id}>
-            <NavLink to={{ pathname: `${id}`, state: { from: location } }}>
+            <NavLink to={`${id}`} state={{ from: location }}>
               {title}
             </NavLink>
           </li>

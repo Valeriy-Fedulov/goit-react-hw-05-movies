@@ -18,7 +18,7 @@ function HomePage() {
     <ul>
       {movies.map(({ id, title, name }) => (
         <li key={id}>
-          <Link to={{ pathname: `/movies/${id}`, state: { from: location } }}>
+          <Link to={`/movies/${id}`} state={{ from: location }}>
             {title ? title : name}
           </Link>
         </li>

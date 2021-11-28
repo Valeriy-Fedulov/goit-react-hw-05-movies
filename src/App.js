@@ -4,12 +4,6 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Navigation } from "./components/navigation";
 
-// import { HomePage } from "./views/HomePage";
-// import { MoviesPage } from "./views/MoviesPage";
-// import { MovieDetailsPage } from "./views/MovieDetailsPage";
-// import { Cast } from "./views/Cast";
-// import { Reviews } from "./views/Reviews";
-
 const HomePage = lazy(() =>
   import("./views/HomePage" /* webpackChunkName: "home-page" */)
 );

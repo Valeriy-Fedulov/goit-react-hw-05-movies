@@ -9,7 +9,6 @@ function MovieDetailsPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log(useParams());
   useEffect(() => {
     FetchMovie(movieId).then((response) => {
       setMovie(response.data);
@@ -18,8 +17,12 @@ function MovieDetailsPage() {
 
   return (
     <>
-      {console.log(location)}
-      <button type="button" onClick={() => navigate(location.state.from)}>
+      <button
+        type="button"
+        onClick={() =>
+          location.state ? navigate(location.state.from) : navigate("/")
+        }
+      >
         Back
       </button>
       {movie && (
