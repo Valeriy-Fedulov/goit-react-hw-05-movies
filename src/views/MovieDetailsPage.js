@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router";
-import { NavLink, Outlet, Link } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { FetchMovie } from "../services/api/apimovie";
 
 function MovieDetailsPage() {
@@ -9,6 +9,7 @@ function MovieDetailsPage() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  console.log(useParams());
   useEffect(() => {
     FetchMovie(movieId).then((response) => {
       setMovie(response.data);
@@ -18,10 +19,7 @@ function MovieDetailsPage() {
   return (
     <>
       {console.log(location)}
-      <button
-        type="button"
-        onClick={() => navigate(location.state?.pathname ? -1 : "/")}
-      >
+      <button type="button" onClick={() => navigate(location.state.from)}>
         Back
       </button>
       {movie && (
@@ -57,4 +55,4 @@ function MovieDetailsPage() {
   );
 }
 
-export { MovieDetailsPage };
+export default MovieDetailsPage;

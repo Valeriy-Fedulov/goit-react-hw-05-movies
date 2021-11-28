@@ -1,6 +1,6 @@
 import { FetchSearch } from "../services/api/search";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
 
 function MoviesPage() {
@@ -48,7 +48,9 @@ function MoviesPage() {
       <ul>
         {movies.map(({ id, title }) => (
           <li key={id}>
-            <Link to={`${id}`}>{title}</Link>
+            <NavLink to={{ pathname: `${id}`, state: { from: location } }}>
+              {title}
+            </NavLink>
           </li>
         ))}
       </ul>
@@ -56,4 +58,4 @@ function MoviesPage() {
   );
 }
 
-export { MoviesPage };
+export default MoviesPage;
