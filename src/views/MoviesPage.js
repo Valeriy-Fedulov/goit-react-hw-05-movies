@@ -44,6 +44,9 @@ function MoviesPage() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         ></input>
+        <button type="submit">
+          <span>Search</span>
+        </button>
       </form>
       <ul>
         {movies.map(({ id, title }) => (

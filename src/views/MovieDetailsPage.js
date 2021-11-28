@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router";
 import { NavLink, Outlet } from "react-router-dom";
 import { FetchMovie } from "../services/api/apimovie";
+import posterImg from "../images/movie.jpeg";
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState();
@@ -23,12 +24,16 @@ function MovieDetailsPage() {
           location.state ? navigate(location.state.from) : navigate("/")
         }
       >
-        Back
+        {"<< Go back"}
       </button>
       {movie && (
         <>
           <img
-            src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
+                : posterImg
+            }
             alt={movie.title}
           />
           <h2>
