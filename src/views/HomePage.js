@@ -7,15 +7,9 @@ function HomePage() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    console.log(FetchTrending());
-    FetchTrending()
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setMovies(data.results);
-        console.log(data.results);
-      });
+    FetchTrending().then((response) => {
+      setMovies(response.data.results);
+    });
   }, []);
 
   return (

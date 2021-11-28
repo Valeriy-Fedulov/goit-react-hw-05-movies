@@ -3,23 +3,18 @@ import { useParams } from "react-router";
 import { FetchMovie } from "../services/api/apimovie";
 
 function Reviews() {
-  const [movie, setMovie] = useState();
+  const [movie, setMovie] = useState([]);
   const { movieId } = useParams(null);
 
   useEffect(() => {
-    FetchMovie(movieId, "/reviews")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setMovie(data.results);
-        console.log(data.results);
-      });
+    FetchMovie(movieId, "/reviews").then((response) => {
+      setMovie(response.data.results);
+    });
   }, [movieId]);
 
   return (
     <ul>
-      {movie ? (
+      {movie.length ? (
         movie.map(({ id, author, content }) => (
           <li key={id}>
             <h2>Author: {author}</h2>

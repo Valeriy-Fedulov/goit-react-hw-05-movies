@@ -8,14 +8,9 @@ function MovieDetailsPage() {
   const { movieId } = useParams(null);
 
   useEffect(() => {
-    FetchMovie(movieId)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setMovie(data);
-        console.log(data);
-      });
+    FetchMovie(movieId).then((response) => {
+      setMovie(response.data);
+    });
   }, [movieId]);
 
   return (

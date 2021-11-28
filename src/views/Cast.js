@@ -4,23 +4,18 @@ import { FetchMovie } from "../services/api/apimovie";
 import profile from "../images/profile.png";
 
 function Cast() {
-  const [movie, setMovie] = useState();
+  const [movie, setMovie] = useState([]);
   const { movieId } = useParams(null);
 
   useEffect(() => {
-    FetchMovie(movieId, "/credits")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setMovie(data.cast);
-        console.log(data.cast);
-      });
+    FetchMovie(movieId, "/credits").then((response) => {
+      setMovie(response.data.cast);
+    });
   }, [movieId]);
 
   return (
     <ul>
-      {movie &&
+      {movie.length ? (
         movie.map(({ id, profile_path, name, character }) => (
           <li key={id}>
             <img
@@ -34,7 +29,10 @@ function Cast() {
             <span>{name}</span>
             <span>{character}</span>
           </li>
-        ))}
+        ))
+      ) : (
+        <p>We have no information on this film.</p>
+      )}
     </ul>
   );
 }

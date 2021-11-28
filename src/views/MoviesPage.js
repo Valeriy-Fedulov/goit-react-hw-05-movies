@@ -1,25 +1,29 @@
 import { FetchSearch } from "../services/api/search";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router";
 
 function MoviesPage() {
-  const [query, setQuery] = useState();
+  const [query, setQuery] = useState("");
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    location.search &&
+      setQuery(new URLSearchParams(location.search).get("query"));
+  }, [location.search]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!query.trim()) return setQuery("");
 
-    FetchSearch(query.trim().toLowerCase())
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setMovies(data.results);
-        console.log(data.results);
-      });
+    FetchSearch(query.trim().toLowerCase()).then((response) => {
+      setMovies(response.data.results);
+    });
 
+    navigate({ ...location, search: `query=${query}` });
     setQuery("");
   };
 
@@ -28,6 +32,9 @@ function MoviesPage() {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search movies"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         ></input>
