@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useLocation, useNavigate } from "react-router";
 import { NavLink, Outlet, Link } from "react-router-dom";
 import { FetchMovie } from "../services/api/apimovie";
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState();
   const { movieId } = useParams(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     FetchMovie(movieId).then((response) => {
@@ -15,10 +17,13 @@ function MovieDetailsPage() {
 
   return (
     <>
-      <Link to="/">
-        {" "}
-        <button type="button">Back</button>
-      </Link>
+      {console.log(location)}
+      <button
+        type="button"
+        onClick={() => navigate(location.state?.pathname ? -1 : "/")}
+      >
+        Back
+      </button>
       {movie && (
         <>
           <img

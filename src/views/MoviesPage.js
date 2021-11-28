@@ -9,9 +9,15 @@ function MoviesPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  useEffect(() => {}, [location.search]);
+
   useEffect(() => {
     location.search &&
-      setQuery(new URLSearchParams(location.search).get("query"));
+      FetchSearch(new URLSearchParams(location.search).get("query")).then(
+        (response) => {
+          setMovies(response.data.results);
+        }
+      );
   }, [location.search]);
 
   const handleSubmit = (e) => {
