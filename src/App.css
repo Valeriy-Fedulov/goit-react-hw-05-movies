@@ -1,0 +1,8 @@
+a,
+a:active {
+  color: darkblue;
+}
+
+a:hover {
+  color: darkred;
+}

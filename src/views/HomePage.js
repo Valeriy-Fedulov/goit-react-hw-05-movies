@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
-
 import { FetchTrending } from "../services/api/apitrending";
 
 function HomePage() {

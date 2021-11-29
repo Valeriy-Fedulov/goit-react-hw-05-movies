@@ -2,6 +2,7 @@ import { FetchSearch } from "../services/api/search";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
+import s from "../css/MoviesPage.module.css";
 
 function MoviesPage() {
   const [query, setQuery] = useState("");
@@ -37,6 +38,7 @@ function MoviesPage() {
     <>
       <form onSubmit={handleSubmit}>
         <input
+          className={s.input}
           type="text"
           autoComplete="off"
           autoFocus
@@ -44,7 +46,7 @@ function MoviesPage() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
         ></input>
-        <button type="submit">
+        <button className={s.btn} type="submit">
           <span>Search</span>
         </button>
       </form>

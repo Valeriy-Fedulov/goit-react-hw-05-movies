@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { FetchMovie } from "../services/api/apimovie";
+import s from "../css/Reviews.module.css";
 
 function Reviews() {
   const [movie, setMovie] = useState([]);
@@ -13,7 +14,7 @@ function Reviews() {
   }, [movieId]);
 
   return (
-    <ul>
+    <ul className={s.reviews}>
       {movie.length ? (
         movie.map(({ id, author, content }) => (
           <li key={id}>

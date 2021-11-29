@@ -14,7 +14,7 @@ function Navigation() {
           Movie
         </NavLink>
       </nav>
-      <hr />
+      <hr className={s.hrstyle} />
     </>
   );
 }
