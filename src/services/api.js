@@ -14,7 +14,7 @@ function FetchMovie(movieId, type = "") {
 function FetchSearch(query) {
   return axios("/search/movie", {
     params: {
-      query: `${query}`,
+      query,
       language: "en-US",
       page: 1,
       include_adult: false,
