@@ -7,17 +7,15 @@ import { Navigation } from "./components/navigation";
 const HomePage = lazy(() =>
   import("./views/HomePage" /* webpackChunkName: "home-page" */)
 );
+
 const MoviesPage = lazy(() =>
   import("./views/MoviesPage" /* webpackChunkName: "movie-page" */)
 );
+
 const MovieDetailsPage = lazy(() =>
   import(
     "./views/MovieDetailsPage" /* webpackChunkName: "movie-details-page" */
   )
-);
-const Cast = lazy(() => import("./views/Cast" /* webpackChunkName: "cast" */));
-const Reviews = lazy(() =>
-  import("./views/Reviews" /* webpackChunkName: "reviews" */)
 );
 
 function App() {
@@ -27,11 +25,8 @@ function App() {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
-          </Route>
+          <Route path="movies" element={<MoviesPage />} />
+          <Route path="movies/:movieId/*" element={<MovieDetailsPage />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Suspense>
@@ -40,3 +35,6 @@ function App() {
 }
 
 export default App;
+
+// <Route path="cast" element={<Cast />} />
+// <Route path="reviews" element={<Reviews />} />

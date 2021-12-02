@@ -1,15 +1,27 @@
-import { useState, useEffect } from "react";
-import { useParams, useLocation, useNavigate } from "react-router";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { FetchMovie } from "../services/api";
 import s from "../css/MovieDelailsPage.module.css";
 import posterImg from "../images/movie.jpeg";
+import { Loading } from "../components/loader";
+import {
+  useParams,
+  useLocation,
+  useNavigate,
+  Routes,
+  Route,
+} from "react-router";
 
 function MovieDetailsPage() {
   const [movie, setMovie] = useState();
   const { movieId } = useParams(null);
   const location = useLocation();
   const navigate = useNavigate();
+  const Cast = lazy(() => import("./Cast" /* webpackChunkName: "cast" */));
+
+  const Reviews = lazy(() =>
+    import("./Reviews" /* webpackChunkName: "reviews" */)
+  );
 
   useEffect(() => {
     FetchMovie(movieId).then((response) => {
@@ -57,16 +69,27 @@ function MovieDetailsPage() {
           <h2>Additional information</h2>
           <ul>
             <li>
-              <NavLink to="cast">Cast</NavLink>
+              <NavLink to="cast" state={location.state}>
+                Cast
+              </NavLink>
             </li>
             <li>
-              <NavLink to="reviews">Reviews</NavLink>
+              <NavLink to="reviews" state={location.state}>
+                Reviews
+              </NavLink>
             </li>
           </ul>
           <hr />
           <Outlet />
         </>
       )}
+
+      <Suspense fallback={<Loading />}>
+        <Routes>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
