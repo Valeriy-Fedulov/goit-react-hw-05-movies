@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import { FetchMovie } from "../services/api/apimovie";
+import { FetchMovie } from "../services/api";
 import s from "../css/Cast.module.css";
 import profile from "../images/profile.png";
 

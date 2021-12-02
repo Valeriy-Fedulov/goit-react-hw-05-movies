@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router";
 import { NavLink, Outlet } from "react-router-dom";
-import { FetchMovie } from "../services/api/apimovie";
+import { FetchMovie } from "../services/api";
 import s from "../css/MovieDelailsPage.module.css";
 import posterImg from "../images/movie.jpeg";
 

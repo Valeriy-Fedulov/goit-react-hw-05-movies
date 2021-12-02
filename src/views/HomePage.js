@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router";
-import { FetchTrending } from "../services/api/apitrending";
+import { FetchTrending } from "../services/api";
 
 function HomePage() {
   const [movies, setMovies] = useState([]);

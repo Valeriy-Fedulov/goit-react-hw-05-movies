@@ -1,4 +1,4 @@
-import { FetchSearch } from "../services/api/search";
+import { FetchSearch } from "../services/api";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useNavigate, useLocation } from "react-router";
